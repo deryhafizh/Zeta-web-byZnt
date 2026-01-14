@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3/brython.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3/brython_stdlib.js"></script>
+</head>
+<body onload="brython()">
+
+    <!-- Navbar-->
+<div class="CONTAINER-NAVBAR">
+    <ul class="ul-navbar">
+        <lI class="li-navbar">
+            <a href="index.html" class="a-navbar">HOME</a>
+        </lI>
+        <li class="li-navbar">
+            <a href="SOCIAL MEDIA.html" class="a-navbar">SOCIAL MEDIA</a>
+        </li>
+        <li class="li-navbar">
+            <a href="Game.html" class="a-navbar">GAME</a>
+        </li>
+    </ul>
+</div>
+
+    <!-- CONTENT -->
+<div class="CONTAINER-CONTENT">
+    <img id="gambar-hasil" src="Vestia-zeta-frame-utama-game.gif" class="img-content-game" >
+</div>
+
+    <!-- FOOTER -->
+     <div class="CONTAINER-FOOTER">
+        <ul class="ul-footer">
+            <li class="li-footer">
+                <p id="teks-hasil" class="hasil-game"></p>
+            </li>
+        </ul>
+     </div>
+
+    <!-- FOOTER -->
+     <div class="CONTAINER-FOOTER">
+        <ul class="ul-footer">
+            <li class="li-footer">
+                <h1 class="h1-footer"><strong>Vestia Zeta</strong></h1><br>
+                <h2 class="h2-footer"><strong>Rolling Game!!</strong></h2><br>
+            </li>
+        </ul>
+     </div>
+
+     <!-- Button SRC-->
+     <div class="BUTTON-GAME">
+        <ul class="ul-button-game">
+            <li class="li-button-game">
+                <a href="javascript:void(0)" id="tombol-roll" class="a-game">ROLL</a>
+            </li>
+        </ul>
+     </div>
+
+
+
+<script type="text/python">
+from browser import document, timer
+import random
+
+def hasil(pesan,gambar):
+    document['teks-hasil'].text = pesan
+    document['gambar-hasil'].src = gambar
+
+def roll(ev):
+    document['teks-hasil'].text = 'Rolling..'
+    document['gambar-hasil'].src = 'Vestia-zeta-frame-utama-game.gif'
+
+    umum = 100
+    langka = 18
+    epic = 5
+    roll = random.randint(1,100)
+    if roll <= epic:
+        pesan = 'MISSION SUCCESS: JIR CIT YA! (EPIC)'
+        gambar = 'vestia-zeta-epic-roll.jpg'
+    elif roll <= langka and roll >= epic:
+        pesan = 'Mayan ga siehh.. dapet langka'
+        gambar = 'vestia-zeta-langka-roll.jpg'
+    else:
+        pesan = 'Yahh dapet umum (Gagal Mission)'
+        gambar = 'vestia-zeta-gagal-roll.jpg'
+    
+    timer.set_timeout(lambda: hasil(pesan, gambar), 600)    
+
+document["tombol-roll"].bind("click", roll)
+</script>
+
+
+</body>
+</html>
